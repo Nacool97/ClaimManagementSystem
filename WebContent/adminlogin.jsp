@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body class="form-v10">
-	<h1 class="page-content1"><center>Claim Management System</center></h1>
+	
 	<div class="page-content">
 		<div class="form-v10-content">
 			<form class="form-detail" action="AdminLogin" method="post" id="myform">
@@ -24,7 +24,7 @@
 					<h2>Login</h2>			
 					<div class="form-group">
 					<div class="form-row form-row-1">
-					<input type="text" name="adminid" id="adminid" 
+					<input type="text" name="adminid" id="memberid" 
 							class="input-text" placeholder="Username" size="20" required>
 						</div>
 					</div>
@@ -32,17 +32,16 @@
 					<div class="form-row form-row-1">
 					<input type="password" name="password" id="passwordid" placeholder="Password"required>
 					</div>
-					</div>
-					
+					</div>				
 					<div class="form-checkbox">
-						<label class="container"><p><a href="#" class="text">Forgot Password?</a></p>
-						  
+						<label class="container"><a href="adminsignup.jsp" class="text">New User?SignUp</a>
+						  <p style="color:#eda067; font-family:Montserrat;">**${msg}</p>
 						</label>
 					</div>
-					
 					<div class="form-row-last">
-						<input type="submit" name="register" class="register" value="Login">
+						<input type="submit" name="register" class="register" value="Login"/>
 					</div>
+					
 				</div>
 			</form>
 		</div>

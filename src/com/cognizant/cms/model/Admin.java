@@ -5,12 +5,12 @@ public class Admin {
     private String lname;
     private int age;
     private String gender;
-    private long contactnumber;
+    private String contactnumber;
     private String adminid;
     private String password;
     private String email;
    
-	public Admin(String fname,String lname,int age,String gender,long contactnumber,String adminid,String password,String email) {
+	public Admin(String fname,String lname,int age,String gender,String contactnumber,String adminid,String password,String email) {
 		// TODO Auto-generated constructor stub
 		this.fname=fname ;
 	    this.lname=lname;
@@ -45,10 +45,10 @@ public class Admin {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public long getContactnumber() {
+	public String getContactnumber() {
 		return contactnumber;
 	}
-	public void setContactnumber(long contactnumber) {
+	public void setContactnumber(String contactnumber) {
 		this.contactnumber = contactnumber;
 	}
 	public String getAdminid() {

@@ -1,5 +1,7 @@
 package com.cognizant.cms.model;
 
+import java.util.Date;
+
 public class Member {
 	private String fname ;
 	private String lname;
@@ -9,17 +11,106 @@ public class Member {
     private String memberid;
     private String password;
     private String email;
-    public Member(String fname,String lname,int age,String gender,String contactnumber,String memberid,String password,String email) {
-		// TODO Auto-generated constructor stub
-		this.fname=fname ;
-	    this.lname=lname;
-	    this.age=age;
-	    this.gender=gender;
-	    this.contactnumber=contactnumber;
-	    this.memberid=memberid;
-	    this.password=password;
-	    this.email=email;
+    private String address;
+    private String zipcod;
+    private String city,state;
+    private String plan_code;
+    private String status;
+    private Date cov_start,cov_end,dob;
+    public Date getDob() {
+		return dob;
 	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+
+	public Member(String fname, String lname, int age, String gender, String contactnumber, String memberid,
+			String password, String email, String address, String zipcod, String city, String state, String plan_code,
+			String status,Date cov_start,Date cov_end) {
+		super();
+		this.fname = fname;
+		this.lname = lname;
+		this.age = age;
+		this.gender = gender;
+		this.contactnumber = contactnumber;
+		this.memberid = memberid;
+		this.password = password;
+		this.email = email;
+		this.address = address;
+		this.zipcod = zipcod;
+		this.city = city;
+		this.state = state;
+		this.plan_code = plan_code;
+		this.status = status;
+		this.cov_start=cov_start;
+		this.cov_end=cov_end;
+	}
+	
+	public Date getCov_start() {
+		return cov_start;
+	}
+
+	public void setCov_start(Date cov_start) {
+		this.cov_start = cov_start;
+	}
+
+	public Date getCov_end() {
+		return cov_end;
+	}
+
+	public void setCov_end(Date cov_end) {
+		this.cov_end = cov_end;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getZipcod() {
+		return zipcod;
+	}
+
+	public void setZipcod(String zipcod) {
+		this.zipcod = zipcod;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getPlan_code() {
+		return plan_code;
+	}
+
+	public void setPlan_code(String plan_code) {
+		this.plan_code = plan_code;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public Member() {
 		// TODO Auto-generated constructor stub
 	}
@@ -50,8 +141,8 @@ public class Member {
 	public String getContactnumber() {
 		return contactnumber;
 	}
-	public void setContactnumber(String contactnumber) {
-		this.contactnumber = contactnumber;
+	public void setContactnumber(String cno) {
+		this.contactnumber = cno;
 	}
 	public String getMemberid() {
 		return memberid;

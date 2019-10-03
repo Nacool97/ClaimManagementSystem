@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cognizant.cms.dao.AdminDaoSql;
 
@@ -31,12 +32,20 @@ public class AcceptRegistrationRequest extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session=request.getSession(false);
+		if(session==null)
+		{
+			RequestDispatcher rd=request.getRequestDispatcher("homepage.jsp");
+		}
+		else
+		{
 		String memidd=request.getParameter("id");
-		int memid=Integer.parseInt(memidd);
+		
 		AdminDaoSql adminDaoSql=new AdminDaoSql();
-		adminDaoSql.AcceptMemberStatus(memid);
-		RequestDispatcher rd=request.getRequestDispatcher("adminHome.jsp");
+		adminDaoSql.AcceptMemberStatus(memidd);
+		RequestDispatcher rd=request.getRequestDispatcher("pending_approval.jsp");
 		rd.include(request, response);
+		}
 	}
 
 	/**

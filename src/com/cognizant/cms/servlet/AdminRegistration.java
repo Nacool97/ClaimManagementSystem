@@ -5,11 +5,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cognizant.cms.dao.AdminDaoSql;
 import com.cognizant.cms.dao.ConnectionHandler;
@@ -35,18 +37,23 @@ public class AdminRegistration extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		  //doGet(request, response);
+		HttpSession session=request.getSession(false);
+		if(session==null)
+		{
+			RequestDispatcher rd=request.getRequestDispatcher("homepage.jsp");
+		}
+		else
+		{
 		   String fname = request.getParameter("fname");
 	       String lname=request.getParameter("lname");
 	       String agee=request.getParameter("age");
-	       System.out.println(agee);
 	       int age=Integer.parseInt(agee);
 	       String gender=request.getParameter("gender");
 	       String contactnumberr=request.getParameter("phone");
-	       long contactnumber=Long.parseLong(contactnumberr);
-	       String adminid=request.getParameter("admin");
+	       String adminid=request.getParameter("adminid");
 	       String password=request.getParameter("password");
 	       String email=request.getParameter("email");
-           Admin admin=new Admin(fname,lname,age,gender,contactnumber,adminid,password,email);
+           Admin admin=new Admin(fname,lname,age,gender,contactnumberr,adminid,password,email);
            AdminDaoSql adminDaoSql=new AdminDaoSql();
            int i= adminDaoSql.verifysignup(admin);
            if(i==1){
@@ -61,8 +68,8 @@ public class AdminRegistration extends HttpServlet {
   		 {
   			 String str= "admin Already registered with same information You can Login";
   			 request.setAttribute("errormsg1", str);
-  			 request.getRequestDispatcher("adminsignup.jsp").include(request, response);
+  			 request.getRequestDispatcher("adminlogin.jsp").include(request, response);
   		 }
 	}
-
+	}
 }

@@ -12,45 +12,58 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cognizant.cms.dao.AdminDaoSql;
 import com.cognizant.cms.dao.ConnectionHandler;
 
-/**
- * Servlet implementation class AdminLogin
- */
 @WebServlet("/AdminLogin")
 public class AdminLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+  
     public AdminLogin() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		  //doGet(request, response);
+		HttpSession session=request.getSession(false);
+		if(session==null)
+		{
+			RequestDispatcher rd=request.getRequestDispatcher("homepage.jsp");
+		}
+		else
+		{
 		  String password=request.getParameter("password");
 	      String adminid=request.getParameter("adminid");
           AdminDaoSql adminDaoSql=new AdminDaoSql();
-          adminDaoSql.loginAdmin(adminid, password);
-          RequestDispatcher rd=request.getRequestDispatcher("adminHome.jsp");
-		  rd.forward(request, response);
+          HttpSession session1=request.getSession();
+          int i=adminDaoSql.loginAdmin(adminid, password);
+          if(i==1)
+          {
+        	  String success="Logged in Successfully";
+        	 
+        	  session.setAttribute("registered", success);
+        	  RequestDispatcher rd=request.getRequestDispatcher("adminHome.jsp");
+    		  rd.forward(request, response);
+  
+          }
+          if(i==2)
+          {
+        	  String success="Member Id/Passoword incorrect";
+        	  session.setAttribute("errormsg1", success);
+        	  RequestDispatcher rd=request.getRequestDispatcher("adminlogin.jsp");
+    		  rd.forward(request, response);
+          }
+		} 		  
 	}
 
 }

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body class="form-v10">
-	<h1 class="page-content1"><center>Claim Management System</center></h1>
+
 	<div class="page-content">
 		<div class="form-v10-content">
 			<form class="form-detail" action="AdminRegistration" method="post" id="myform">
@@ -33,7 +33,7 @@
 						</div>
 					</div>
 					<div class="form-row">
-					<input type="text" name="admin" id="adminid" 
+					<input type="text" name="adminid" id="adminid" 
 							class="input-text" placeholder="Username" required>
 					</div>
 					

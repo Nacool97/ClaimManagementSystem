@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body class="form-v10">
-	<h1 class="page-content1"><center>Claim Management System</center></h1>
+	
 	<div class="page-content">
 		<div class="form-v10-content">
 			<form class="form-detail" action="MemberRegistration" method="post" id="myform">
@@ -35,6 +35,18 @@
 					<div class="form-row">
 					<input type="text" name="member" id="memberid" 
 							class="input-text" placeholder="Username" required>
+					</div>
+					<div class="form-group">
+					<div class="form-row form-row-1">
+					<input type="password" name="password" id="passwordid" placeholder="Password"required>
+					</div>
+					<div class="form-row form-row-2">
+					<input type="password" name="password" id="passwordid" placeholder="Confirm Password"required>
+					</div>
+				</div>
+					<div class="form-row">
+					Date of birth:
+						<input type="date" name="dob"required/>
 					</div>
 					<div class="form-row">
 						<select name="gender" required>
@@ -64,15 +76,21 @@
 							  	<i class="zmdi zmdi-chevron-down"></i>
 							</span>
 						</div>
+						
 					</div>
+					
 					<div class="form-group">
 					<div class="form-row form-row-1">
-					<input type="password" name="password" id="passwordid" placeholder="Password"required>
+						<p>Coverage Start Date:</p>
+						<input type="date" name="cov_start"required/><br>
+						</div>
+						</div>
+						<div class="form-group">
+						<div class="form-row form-row-1">
+						Coverage End Date:
+						<input type="date" name="cov_end"required/><br>
+						</div>
 					</div>
-					<div class="form-row form-row-2">
-					<input type="password" name="password" id="passwordid" placeholder="Confirm Password"required>
-					</div>
-				</div>
 				</div>
 				<div class="form-right">
 					<h2>Contact Details</h2>
@@ -84,14 +102,15 @@
 					</div>
 					<div class="form-group">
 						<div class="form-row form-row-1">
-							<input type="text" name="zip" class="zip" id="zip" placeholder="Zip Code" required>
+							<input type="text" name="zip_code" class="zip" id="zip" placeholder="Zip Code" required>
 						</div>
 						<div class="form-row form-row-2">
-							<select name="place">
-							    <option value="place">Place</option>
-							    <option value="Street">Street</option>
-							    <option value="District">District</option>
-							    <option value="City">City</option>
+							<select name="state">
+							    <option value="Maha">Maharashtra</option>
+							    <option value="UP">Uttar Pradesh</option>
+							    <option value="Andra">AndraPradesh</option>
+							    <option value="Orissa">Orissa</option>
+							    <option value="MP">Madhya Pradesh</option>
 							</select>
 							<span class="select-btn">
 							  	<i class="zmdi zmdi-chevron-down"></i>
@@ -99,11 +118,11 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<select name="country">
-						    <option value="country">Country</option>
-						    <option value="Vietnam">Vietnam</option>
-						    <option value="Malaysia">Malaysia</option>
-						    <option value="India">India</option>
+						<select name="city">
+						    <option value="country">Pune</option>
+						    <option value="Vietnam">Nashik</option>
+						    <option value="Malaysia">Mumbai</option>
+						    <option value="India">Nagpur</option>
 						</select>
 						<span class="select-btn">
 						  	<i class="zmdi zmdi-chevron-down"></i>
@@ -111,11 +130,11 @@
 					</div>
 					<div class="form-group">
 						<div class="form-row form-row-1">
-							<input type="text" name="phone" class="phone" id="phone" placeholder="Phone Number" required>
+							<input type="text" name="phonenumber" class="phone" id="phone" placeholder="Phone Number" required>
 						</div>
 					</div>
 					<div class="form-row">
-						<input type="text" name="your_email" id="your_email" class="input-text" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="Your Email">
+						<input type="text" name="email" id="your_email" class="input-text" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="Your Email">
 					</div>
 					<div class="form-checkbox">
 						<label class="container"><p>I do accept the <a href="#" class="text">Terms and Conditions</a> of your site.</p>

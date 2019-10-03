@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.cognizant.cms.model.Admin;
 import com.cognizant.cms.model.Member;
@@ -17,15 +18,14 @@ public void addAdmin(Admin admin) {
     String lname=admin.getLname();
     int age=admin.getAge();
     String gender=admin.getGender();
-    long contactnumberr=admin.getContactnumber();
-    String contactnumber=String.valueOf(contactnumberr);
+    String contactnumberr=admin.getContactnumber();
     String adminid=admin.getAdminid();
     String password=admin.getPassword();
     String email=admin.getEmail();
 	  try {
  		    Connection con=ConnectionHandler.getConnection();
  		
- 			PreparedStatement stmt=con.prepareStatement("insert into admin (admin_id,fn,gender,ln,age,password,cnt_no,email) values('"+adminid+"','"+fname+"','"+gender+"','"+lname+"','"+age+"','"+password+"','"+contactnumber+"','"+email+"')");
+ 			PreparedStatement stmt=con.prepareStatement("insert into admin (admin_id,fn,gender,ln,age,password,cnt_no,email) values('"+adminid+"','"+fname+"','"+gender+"','"+lname+"','"+age+"','"+password+"','"+contactnumberr+"','"+email+"')");
  			System.out.println("Admin Saved Succeessfully");
  			stmt.executeUpdate();
  			} catch (SQLException e) {
@@ -34,7 +34,7 @@ public void addAdmin(Admin admin) {
  		}  
 }
 
-public void loginAdmin(String adminid,String password) {
+public int loginAdmin(String adminid,String password) {
 
     try {
 		Connection con=ConnectionHandler.getConnection();
@@ -44,20 +44,24 @@ public void loginAdmin(String adminid,String password) {
 			String passwordtemp=null;
 			while(rs.next()){
 				passwordtemp=rs.getString("password");
+				System.out.println(passwordtemp);
 			}
 			if(passwordtemp.equals(password)){
 				System.out.println("Admin Login succeesfully");
+				return 1;
 			}
 			else{
 				System.out.println("Admin not Login");
+			
 			}
 			} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}  
+		} 
+    return 2;
 }
     public ArrayList<Member> pendingRegistration() {
-    	
+    
 	try {
    		Connection con=ConnectionHandler.getConnection();
    		    int id=0;
@@ -68,13 +72,38 @@ public void loginAdmin(String adminid,String password) {
         	String lname=rs.getString(4);
             int age=rs.getInt(5);
             String gender=rs.getString(3);
-            String contactnumber=rs.getString(7);
-          
+            String contactnumberr=rs.getString(7);
             String memberid=rs.getString(1);
             String password=rs.getString(9);
-            String email=rs.getString(8);
+            String email=rs.getString(7);
+            Date dob=new Date(rs.getDate(6).getTime());
+            String plan_code=rs.getString(10);
+            Date start=new Date(rs.getDate(11).getTime());
+            Date end=new Date(rs.getDate(12).getTime());
+            String address=rs.getString(13);
+            String city=rs.getString(14);
+            String state=rs.getString(15);
+            String zip_code=rs.getString(16);
+            String status=rs.getString(17);
+ 		Member member=new Member();
+ 		member.setAddress(address);
+ 		member.setAge(age);
+ 		member.setCity(city);
+ 		member.setContactnumber(contactnumberr);
+ 		member.setCov_end(end);
+ 		member.setCov_start(start);
+ 		member.setDob(dob);
+ 		member.setEmail(email);
+ 		member.setFname(fname);
+ 		member.setGender(gender);
+ 		member.setLname(lname);
+ 		member.setMemberid(memberid);
+ 		member.setPassword(password);
+ 		member.setPlan_code(plan_code);
+ 		member.setState(state);
+ 		member.setStatus(status);
+ 		member.setZipcod(zip_code);
  		
- 		Member member=new Member(fname,lname,age,gender,contactnumber,memberid,password,email);
  		System.out.println(member);
  		memberList.add(member);
  		
@@ -88,13 +117,12 @@ public void loginAdmin(String adminid,String password) {
 }
     
     
-    public void AcceptMemberStatus(int memidd) {
+    public void AcceptMemberStatus(String memidd) {
    	 ArrayList<Member> memberList=null;
 	try {
   		Connection con=ConnectionHandler.getConnection();
-  		memberList=new ArrayList<Member>();
   		    int id=1;
-  		    int mem_id=memidd;
+  		    String mem_id=memidd;
   		    System.out.println("MemberId "+mem_id );
   			PreparedStatement stmt=con.prepareStatement("update member set status='"+id+"' where mem_id='"+mem_id+"'");
   			System.out.println("menber Status accepted Succeessfully");
@@ -110,8 +138,8 @@ public void loginAdmin(String adminid,String password) {
       	 ArrayList<Member> memberList=null;
    	try {
      		Connection con=ConnectionHandler.getConnection();
-     		memberList=new ArrayList<Member>();
-     		    int id=3;
+   
+     		 
      			PreparedStatement stmt=con.prepareStatement("delete from member where mem_id='"+memid+"'");
      			System.out.println("member Status Rejected Succeessfully");
     			stmt.executeUpdate();
